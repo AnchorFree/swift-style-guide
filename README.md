@@ -305,9 +305,11 @@ else {
 }
 ```
 
-* There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but having too many sections in a method often means you should refactor into several methods.
+* There should be no more than one blank line between statements within a method to aid in visual clarity and organization. Whitespace within methods should separate functionality, but having too many sections in a method often means you should refactor into several methods.
 
 * There should be no blank lines after an opening brace or before a closing brace.
+
+* There should be no more than two and no less than one blank lines between methods and other declarations to aid in visual clarity and organization. Use two lines when breaking between methods and whenever it helps make the structure of the document or type more readable. Using one works fine when dealing with groupled declarations like related properties or constants, or between declarations and comments since syntax coloring makes for an easy to follow flow without the extra space.
 
 * Colons always have no space on the left and one space on the right. Exceptions are the ternary operator `? :`, empty dictionary `[:]` and `#selector` syntax `addTarget(_:action:)`.
 
@@ -399,13 +401,6 @@ The example above demonstrates the following style guidelines:
  + Don't add modifiers such as `internal` when they're already the default. Similarly, don't repeat the access modifier when overriding a method.
  + Organize extra functionality (e.g. printing) in extensions.
  + Hide non-shared, implementation details such as `centerString` inside the extension using `private` access control.
-
-### Use of Self
-
-For conciseness, avoid using `self` since Swift does not require it to access an object's properties or invoke its methods.
-
-Use self only when required by the compiler (in `@escaping` closures, or in initializers to disambiguate properties from arguments). In other words, if it compiles without `self` then omit it.
-
 
 ### Computed Properties
 
