@@ -463,6 +463,39 @@ func reticulateSplines(
 }
 ```
 
+Public functions should have comment headers in markup style with a brief declaration of what the function does, a list of parameters, and a list of side effects that calling the function may have. For internal functions that are vended inside a module, this header is preferred, but not required. Keeping this header up to date is part of the coding and code review process.
+
+**Required**
+```swift
+/**
+ This function does something.
+ - Parameter myParameter: value for my parameter that is used by function.
+ Side Effects: application may crash.
+ */
+public func foo(myParameter: Any) {
+  // Code
+}
+```
+
+**Preferred**
+```swift
+/**
+ This function does something.
+ - Parameter myParameter: value for my parameter that is used by function.
+ Side Effects: application may crash.
+ */
+func foo(myParameter: Any) {
+  // Code
+}
+```
+
+**Not Preferred**
+```swift
+func foo(myParameter: Any) {
+  // Code
+}
+```
+
 Don't use `(Void)` to represent the lack of an input; simply use `()`. Use `Void` instead of `()` for closure and function outputs.
 
 **Preferred**:
