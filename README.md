@@ -16,6 +16,7 @@ We would like to thank the creators of the [raywenderlich.com](https://github.co
   * [Generics](#generics)
   * [Class Prefixes](#class-prefixes)
   * [Language](#language)
+  * [Reactive](#reactive)
 * [Code Organization](#code-organization)
   * [Protocol Conformance](#protocol-conformance)
   * [Unused Code](#unused-code)
@@ -48,6 +49,7 @@ We would like to thank the creators of the [raywenderlich.com](https://github.co
 * [Semicolons](#semicolons)
 * [Parentheses](#parentheses)
 * [Multi-line String Literals](#multi-line-string-literals)
+* [RxSwift](#rxswift)
 * [Copyright Statement](#copyright-statement)
 * [References](#references)
 
@@ -179,6 +181,9 @@ let color = "red"
 ```swift
 let colour = "red"
 ```
+
+### Reactive
+Please see the section on RxSwift for naming of reactive values.
 
 ## Code Organization
 
@@ -1075,6 +1080,67 @@ let message = "You cannot charge the flux " +
   "You must use a super-charger " +
   "which costs 10 credits. You currently " +
   "have \(credits) credits available."
+```
+## RxSwift
+
+We will consider two main use cases for observables. When creating observables, the use case must be documented in either the protocol or exposed API declaration. The naming of the observable is also affected by the use case. Observables should only be used in scenarios where the value is dynamic. Static values do not require observables.
+
+The primary use case is where the observable reflects an underlying dynamic variable. In this use case, the subscriber expects the current value and subsequent updates when subscribing. The underlying value of the observable updates regardless of whether the observable is subscribed to. The naming for this type of observable should be simple, and reflect a variable name. For the implementation, a BehaviorRelay (preferred) or BehaviorSubject should be used. The class should vend the observable form of the underlying implementation. If a synchronous value is required, the class may also vend the current value of the underlying implementation with RawValue appended to the variable name.
+
+**Example**
+
+```swift
+// Defined protocol for class
+protocol ObservableClass {
+ /**
+  This integer is updated when foo happens to bar.
+  Subscribe to this observable to get its current value and subsequent changes.
+  */
+ myInteger: Observable<Int> { get }
+
+ // Defining a raw value is not preferred and should only be done in rare cases.
+ myIntegerRawValue: Int { get }
+}
+
+// Implementation
+class ObservableClassImplementation {
+ // Underlying backing for vended observable observedInteger
+ let myIntegerRelay = BehaviorRelay<Int>(value: 0)
+ ...
+}
+
+extension ObservableClassImplementation: ObservableClass {
+ var myInteger: Observable<Int> {
+  return myIntegerRelay.asObservable()
+ }
+ 
+ var myIntegerRawValue: Int {
+  return myIntegerRelay.value
+ }
+}
+```
+
+A secondary use case is where the subscriber only cares about updates to the observable. In this use case, the observable only updates when there is a subscription. The implementation may provide an initial value, but that value should not affect the usage of the observable. There is no synchronous value associated with this type of observable. The naming of this type of observable should have Stream appended at the end of the variable name.
+
+**Example**
+
+```swift
+// Defined protocol for class
+protocol ObservableClass {
+ /**
+  This integer updates when foo happens to bar and is subscribed to.
+  Subscribe to this observable to get a predefined initial value and subsequent changes.
+  */
+  myIntegerStream: Observable<Int> { get }
+  
+  // There is NO raw value associated with this type of observable.
+}
+
+class ObservableClassImplementation {
+
+ let myIntegerStream: Observable<Int>
+ ...
+}
 ```
 
 ## Copyright Statement
