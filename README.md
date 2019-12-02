@@ -183,7 +183,7 @@ let colour = "red"
 ```
 
 ### Reactive
-Please see the section on RxSwift for naming of reactive values.
+Please see the section on [RxSwift](#rxswift) for naming of reactive values.
 
 ## Code Organization
 
