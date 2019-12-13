@@ -1096,7 +1096,7 @@ protocol ObservableClass {
   This integer is updated when foo happens to bar.
   Subscribe to this observable to get its current value and subsequent changes.
   */
- myInteger: Observable<Int> { get }
+ myIntegerStream: Observable<Int> { get }
 
  // Defining a raw value is not preferred and should only be done in rare cases.
  myIntegerRawValue: Int { get }
