@@ -1085,7 +1085,7 @@ let message = "You cannot charge the flux " +
 
 We will consider two main use cases for observables. When creating observables, the use case must be documented in either the protocol or exposed API declaration. The naming of the observable is also affected by the use case. Observables should only be used in scenarios where the value is dynamic. Static values do not require observables.
 
-The primary use case is where the observable reflects an underlying dynamic variable. In this use case, the subscriber expects the current value and subsequent updates when subscribing. The underlying value of the observable updates regardless of whether the observable is subscribed to. The naming for this type of observable should be simple, and reflect a variable name. For the implementation, a BehaviorRelay (preferred) or BehaviorSubject should be used. The class should vend the observable form of the underlying implementation. If a synchronous value is required, the class may also vend the current value of the underlying implementation with RawValue appended to the variable name.
+The primary use case is where the observable reflects an underlying dynamic variable. In this use case, the subscriber expects the current value and subsequent updates when subscribing. The underlying value of the observable updates regardless of whether the observable is subscribed to. The naming for this type of observable should be simple, and reflect a variable name. For the implementation, a BehaviorRelay (preferred) or BehaviorSubject should be used. The class should vend the observable form of the underlying implementation. If a synchronous value is required, the class may also vend the current value of the underlying implementation.
 
 **Example**
 
