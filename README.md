@@ -1099,7 +1099,7 @@ protocol ObservableClass {
  myIntegerStream: Observable<Int> { get }
 
  // Defining a raw value is not preferred and should only be done in rare cases.
- myIntegerRawValue: Int { get }
+ myInteger: Int { get }
 }
 
 // Implementation
