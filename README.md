@@ -48,6 +48,7 @@ We would like to thank the creators of the [raywenderlich.com](https://github.co
 * [Semicolons](#semicolons)
 * [Parentheses](#parentheses)
 * [Multi-line String Literals](#multi-line-string-literals)
+* [Accessibility](#accessibility)
 * [Copyright Statement](#copyright-statement)
 * [References](#references)
 
@@ -1076,6 +1077,10 @@ let message = "You cannot charge the flux " +
   "which costs 10 credits. You currently " +
   "have \(credits) credits available."
 ```
+
+## Accessibility
+
+Accessibility identifiers for controls and views should be mapped to the corresponding TrackingConstants in the ReportingEvents framework. When the controls are created in the view setup, assignment of static accessibility identifiers should be made using setAccessibilityIdentifier(). In cases where the control has dynamic behavior, updating the accessibility identifier when the behavior changes should occur at the same time the control is updated. We should add accessibility identifiers and TrackingConstants for any UI element that we expect automation to interact with.
 
 ## Copyright Statement
 
