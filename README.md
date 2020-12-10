@@ -526,14 +526,15 @@ Mirror the style of function declarations at call sites. Calls that fit on a sin
 let success = reticulateSplines(splines)
 ```
 
-If the call site must be wrapped, put each parameter on a new line, indented one additional level:
+If the call site must be wrapped, put each parameter on a new line, indented one additional level. The parenthesis must be placed on its own line:
 
 ```swift
 let success = reticulateSplines(
   spline: splines,
   adjustmentFactor: 1.3,
   translateConstant: 2,
-  comment: "normalize the display")
+  comment: "normalize the display"
+)
 ```
 
 ## Closure Expressions
